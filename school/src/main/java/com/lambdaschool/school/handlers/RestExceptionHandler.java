@@ -28,7 +28,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
     // had to make
     //by handling within ControllerAdvice, we can come up with our own handler resource not found
     //this is not an override as it is our own method
-    @ExceptionHandler(ResourceNotFoundException.class)
+    @ExceptionHandler(ResourceNotFoundException.class)///GUUD
     public ResponseEntity<?> handleResourceNotFound(ResourceNotFoundException rnfe, HttpServletRequest request)
     {
         ErrorDetail errorDetail = new ErrorDetail();
@@ -41,7 +41,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
     }
 
     //        the wrong data type is used for a path variable
-    @Override
+    @Override///GUUD
     protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatus status, WebRequest request)
     {
         ErrorDetail errorDetail = new ErrorDetail();
@@ -54,7 +54,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
     }
 
     //        a non-handled endpoint is accessed (a URL not found exception)
-    @Override
+    @Override//GUUD
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request)
     {
         ErrorDetail errorDetail = new ErrorDetail();
@@ -65,18 +65,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
         errorDetail.setDeveloperMessage("Rest Handler Not Found (check for valid URI)");
         return new ResponseEntity<>(errorDetail, null, HttpStatus.NOT_FOUND);
     }
-
-//    @Override
-//    protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request)
-//    {
-//        ErrorDetail errorDetail = new ErrorDetail();
-//        errorDetail.setTimestamp(new Date().getTime());
-//        errorDetail.setStatus(HttpStatus.NOT_FOUND.value());
-//        errorDetail.setTitle(ex.getMethod());
-//        errorDetail.setDetail(request.getDescription(true));
-//        errorDetail.setDeveloperMessage("HTTP Method Not Valid for Endpoint (check for valid URI and proper HTTP Method)");
-//        return new ResponseEntity<>(errorDetail, null, HttpStatus.NOT_FOUND);
-//    }
 }
 
 
